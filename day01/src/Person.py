@@ -20,11 +20,28 @@ class Person:
                       'S': (self.getY, self.setY, -1),
                       'W': (self.getX, self.setX, -1)}
 
-    def setX(self, value):
-        self.x = value
+    def setX(self, value, diff):
+        gettr, settr, mult = self.mover[self.cardinal]
+        movedThrough = []
+
+        print "x : cur: %d, value: %d, mult: %d" % (self.y, diff, mult)
+        for i in range(1, diff+1):
+            movedThrough.append((self.x + (i * mult), self.y))
             
-    def setY(self, value):
+        self.x = value
+        return movedThrough
+            
+    def setY(self, value, diff):
+        gettr, settr, mult = self.mover[self.cardinal]
+        movedThrough = []
+
+        print "y : cur: %d, value: %d, mult: %d" % (self.y, diff, mult)
+        for i in range(1, diff+1):
+            movedThrough.append((self.x, self.y + (i * mult)))
+        
+        gettr, settr, mult = self.mover[self.cardinal]
         self.y = value
+        return movedThrough
 
     def getX(self):
         return self.x
@@ -35,40 +52,10 @@ class Person:
     def turn(self, direction):
         cur = self.cardinal
         self.cardinal = turn[cur][direction]
-        print "Started %s turned %s now %s" % (cur, direction, self.cardinal)
+#        print "Started %s turned %s now %s" % (cur, direction, self.cardinal)
         
     def move(self, steps):
         gettr, settr, mult = self.mover[self.cardinal]
 
-        settr(gettr() + (mult * steps))
-
+        return settr(gettr() + (mult * steps), steps)
         
-if __name__ == '__main__':
-    p = Person()
-    p.move(4)
-    print str(p.x) + " " + str(p.y)
-
-    p = Person()
-    p.turn('R')
-    p.move(4)
-    print str(p.x) + " " + str(p.y)
-
-    p = Person()
-    p.turn('R')
-    p.turn('R')
-    p.move(4)
-    print str(p.x) + " " + str(p.y)
-
-    p = Person()
-    p.turn('R')
-    p.turn('R')
-    p.turn('R')
-    p.move(4)
-    print str(p.x) + " " + str(p.y)
-
-    p = Person()
-    p.turn('L')
-    p.turn('L')
-    p.turn('L')
-    
-
