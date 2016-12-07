@@ -8,22 +8,9 @@ def supports(string):
     print string
     m = re.split('\[.*\]', string)
     print m
-    return
-    
-    split = string.split('[')
 
-    r = ""
-    for s in split:
-        print "s: %s" % s
-        i = s.rfind(']')
-        print "i:%d" % i
-        
-        if i == -1:
-            r += s
-            continue
-        r += s[i:]
-    print "%s\n\n%s" % (string, r)
-
+    r = " ".join(m)
+    print "r:%s" % r
     charsWeCharAbout = r
 
     for i in range(len(charsWeCharAbout)):
