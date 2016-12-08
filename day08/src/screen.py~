@@ -1,0 +1,18 @@
+
+class Screen:
+
+    def __init__(self, x, y):
+        pass
+
+
+    def rec(self):
+        pass
+
+    def rotate(self):
+        pass
+    
+
+
+
+
+    

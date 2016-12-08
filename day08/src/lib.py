@@ -3,15 +3,7 @@ import sys
 import re
 
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+
 
     
 def supports(string):
@@ -33,8 +25,6 @@ def supports(string):
 
             if c1 == c4 and c2 == c3 and c1 != c2:
                 tt = "%s%s%s%s" % (c1, c2, c3, c4)
-                cl = string.replace("[", "%s%s[%s" % (bcolors.BOLD, bcolors.FAIL, bcolors.ENDC))
-                cl = cl.replace("]", "%s%s]%s" % (bcolors.BOLD, bcolors.FAIL, bcolors.ENDC))
 #                print cl
 #                print string.replace(tt, "___%s___"%tt)
 #                print "True: %s%s == %s%s\n\n" % (c1, c2, c3, c4)

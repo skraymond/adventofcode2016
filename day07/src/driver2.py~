@@ -1,0 +1,10 @@
+with open('/tmp/ddd') as f:
+    for l in f.readlines():
+
+        c1 = 0
+        c2 = 0
+        for let in l:
+            if let == ']':
+                c1 += 1
+            if let == ']':
+                c2 += 1
