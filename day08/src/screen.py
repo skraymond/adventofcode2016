@@ -45,21 +45,21 @@ class Screen:
     def rotate_column(self, start, amount):
         original = copy.deepcopy(self.grid)
 
-        print "start = %d", start
+        #print "start = %d", start
         for i in range(amount):
             for keyx, keyy in self.grid:
                 if keyx == start:
-                    s = "%d,%d" % (keyx, keyy)
-                    print s
+                    # s = "%d,%d" % (keyx, keyy)
+                    # print s
                     val = original[(keyx, self.upY(keyy))]
                     s = "org: %d, %d, %s" % (keyx, self.upY(keyy), val)
-                    print s
+                    # print s
                     self.grid[(keyx, keyy)] = val
             original = copy.deepcopy(self.grid)
 
     def rotate_row(self, start, amount):
         original = copy.deepcopy(self.grid)
-        print "start = %d", start
+        # print "start = %d", start
         for i in range(amount):
             for keyx, keyy in self.grid:
                 if keyy == start:
@@ -72,12 +72,24 @@ class Screen:
             original = copy.deepcopy(self.grid)
 
     def printt(self):
+        print "  ",
+        for y in range(self.xmax):
+            print "%d" % (y%10),
+        print ""            
         for y in range(self.ymax):
+            print "%2d" % (-y),
             for x in range(self.xmax):
                 #print "%s%s" % (self.grid[(x, -y)], "%s,%s"%(x,y)),
                 print "%s" % (self.grid[(x, -y)]),
             print ""
 
+    def count(self):
+        count = 0
+        for y in range(self.ymax):
+            for x in range(self.xmax):
+                if self.grid[(x, -y)] == '#':
+                    count +=1
+        return count
 
 maxX=7
 maxY=3
@@ -89,18 +101,33 @@ assert s.upY(0) == -1 * (maxY-1), "%s" % s.upY(0)
 assert s.downY(-1 * (maxY-1)) == 0, "%d" % (s.downY(-1 * (maxY-1)))
 
 # s.printt()
-
-s.rec(3, 2)
+#
+s.rec(2, 2)
 s.printt()
 
-s.rotate_column(1, 1)
-print "\n\nRotate:\n"
-s.printt()
+for i in range (10):
+    s.rotate_row(0, 1)
+    s.rotate_column(0, 1)
+    s.printt()
 
-s.rotate_row(0, 4)
-print "\n\nRotate:\n"
-s.printt()
+# 
+# s.rotate_column(1, 1)
+# print "\n\nRotate:\n"
+# 
+#s.printt()
+# 
+# s.rotate_row(0, 4)
+# print "\n\nRotate:\n"
+# s.printt()
+# 
+# s.rotate_column(1, 1)
+# print "\n\nRotate:\n"
+# s.printt()
+# 
+# print "\n\ncount: %d" % s.count()
+# 
+# 
+# s.rec(3, 2)
+# s.printt()
+# print "\n\ncount: %d" % s.count()
 
-s.rotate_column(1, 1)
-print "\n\nRotate:\n"
-s.printt()
